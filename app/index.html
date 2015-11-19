@@ -1,26 +1,28 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="phonecatApp">
 <head>
   <meta charset="utf-8">
   <title>My HTML File</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="css/app.css">
   <script src="bower_components/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
 </head>
-<body>
-  	<ul>
-	  <li>
-	    <span>Nexus S</span>
-	    <p>
-	      Fast just got faster with Nexus S.
-	    </p>
-	  </li>
-	  <li>
-	    <span>Motorola XOOM™ with Wi-Fi</span>
-	    <p>
-	      The Next, Next Generation tablet.
-	    </p>
-	  </li>
-	</ul>
+<body ng-controller="PhoneListCtrl">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				Search: <input ng-model="query">
+			</div>
+			<div class="col-md-10">
+				<ul class="phones">
+					<li ng-repeat="phone in phones | filter:query">
+						{{phone.name}}
+						<p>{{phone.snippet}}</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
